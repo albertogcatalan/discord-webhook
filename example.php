@@ -9,6 +9,9 @@ $discordWrapper = new DiscordWrapper($webhook);
 $discordWrapper->sendToDiscord(
     [
         'username' => 'DiscordPHP',
+        'avatar_url' => 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2019/05/peliculas-avatar-retrasan-nuevo-plan-disney.jpg',
         'content' => 'My content'
     ]
 );
+
+// See more options in https://discord.com/developers/docs/resources/webhook#execute-webhook
