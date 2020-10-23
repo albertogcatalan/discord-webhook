@@ -22,6 +22,7 @@ class DiscordWrapper
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -31,5 +32,4 @@ class DiscordWrapper
 
         return $response;
     }
-
 }
