@@ -2,22 +2,34 @@
 
 class DiscordWrapper
 {
-
     protected $discord;
     protected $webhook;
 
-    // constructor con url de webhook
-    public function __construct()
+    public function __construct($webhook)
     {
-        765528404036419614/6lhV6OVE11w0Hj-3pB1m3aXQ9GD4B_CJH5f82SsMQENNp6ftqzeWV_AlsfOBvsggkUhf
+        $this->webhook = $webhook;
     }
 
-    /*
-    * funcion para enviar mensaje
-    */
-    public function sendToDiscord()
+    public function sendToDiscord($params)
     {
-        $url = 'https://discordapp.com/api/webhooks/';
+        $webhook = $this->webhook;
+
+        if (!$webhook) {
+            return false;
+        }
+
+        $url = 'https://discordapp.com/api/webhooks/'.$webhook;
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        return $response;
     }
 
 }
